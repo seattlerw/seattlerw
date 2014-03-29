@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4">
+    <form role="form">
+      <div class="form-group">
+        <label for="name">Search</label>
+        <input type="name" ng-model="search.$" class="form-control" id="name">
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="search.isVegetarian"> Vegetarian
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" ng-model="search.isGlutenFree"> Gluten Free
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-8">
+    <div class="panel panel-default restaurant {{ restaurant.id }}" ng-repeat="restaurant in restaurants | filter:search:strict" ng-if="restaurant.name != null">
+      <div class="panel-heading" >
+        <h2>{{ restaurant.name }} <span ng-show="restaurant.isVegetarian">(V)</span> <span ng-show="restaurant.isGlutenFree">(GF)</span></h2>
+      </div>
+      <div class="panel-body">
+        <p ng-hide="restaurant.yelp == null">
+          <img src="{{ restaurant.yelp.businesses[0].rating_img_url }}" /> <i>{{ restaurant.yelp.businesses[0].rating }} stars</i> ({{ restaurant.yelp.businesses[0].review_count }} reviews)
+        </p>
+        <p ng-hide="restaurant.phone == null">{{ restaurant.phone }}</p>
+        <p ng-hide="restaurant.phone == null">{{ restaurant.address }} <a target="_blank" href="https://www.google.com/maps/search/{{ restaurant.name }}+near+Seattle">map</a></p>
+        <div ng-if="restaurant.lunchDetails != ''">
+          <h3>{{ restaurant.lunchDetails }}</h3>
+          <div ng-if="restaurant.lunch.appetizers.length > 0">
+            <h4>Appetizers</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.lunch.appetizers track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.lunch.entrees.length > 0">
+            <h4>Entrees</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.lunch.entrees track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.lunch.desserts.length > 0">
+            <h4>Desserts</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.lunch.desserts track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.lunch.unknown.length > 0">
+            <h4>Other</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.lunch.unknown track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+        </div>
+        <div ng-if="restaurant.dinnerDetails != ''">
+          <h3>{{ restaurant.dinnerDetails }}</h3>
+          <div ng-if="restaurant.dinner.appetizers.length > 0">
+            <h4>Appetizers</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.dinner.appetizers track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.dinner.entrees.length > 0">
+            <h4>Entrees</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.dinner.entrees track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.dinner.desserts.length > 0">
+            <h4>Desserts</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.dinner.desserts track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.dinner.unknown.length > 0">
+            <h4>Other</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.dinner.unknown track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+        </div>
+        <div ng-if="restaurant.unknown.appetizers.length > 0 && restaurant.unknown.entrees.length > 0 && restaurant.unknown.desserts.length > 0 && restaurant.unknown.unknown.length > 0">
+          <h3>{{ restaurant.unknownDetails }}</h3>
+          <div ng-if="restaurant.unknown.appetizers.length > 0">
+            <h4>Appetizers</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.unknown.appetizers track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.unknown.entrees.length > 0">
+            <h4>Entrees</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.unknown.entrees track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.unknown.desserts.length > 0">
+            <h4>Desserts</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.unknown.desserts track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+          <div ng-if="restaurant.unknown.unknown.length > 0">
+            <h4>Other</h4>
+            <ul>
+              <li ng-repeat="appetizer in restaurant.unknown.unknown track by $index">{{ appetizer }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
