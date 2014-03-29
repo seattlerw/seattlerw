@@ -11,13 +11,7 @@ var yelp = require("yelp").createClient({
 	token_secret: "ZCVM8z8twsZO_v_G5979KiSSI7s"
 });
 
-var args = process.argv.slice(2);
-
-if(args.length != 1) {
-	throw "Missing arguments: file location of seattletimes.json";
-}
-
-var restaurants = JSON.parse(fs.readFileSync(args[0]));
+var restaurants = JSON.parse('../seattletimes/seattletimes.json');
 var requests = [];
 var request_ids = [];
 
