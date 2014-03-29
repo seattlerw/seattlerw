@@ -17,3 +17,4 @@ node_modules
 .tmp
 .sass-cache
 dist
+bower-components
