@@ -4,7 +4,7 @@ angular.module('seattlerwApp')
 .controller('MainCtrl', function ($scope, $http) {
 
 	$scope.refresh = function() {
-		$http.get('/scripts/seattlerw.json').then(function(response) {
+		$http.get('/data/seattlerw.json').then(function(response) {
 			$scope.restaurants = response.data.sort(compare).reverse();
 		});
 	}
