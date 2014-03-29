@@ -349,6 +349,30 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+
+    seattletimes_parser: {
+        target: {
+            src: ['server/seattletimes/seattletimes_parser.js']
+        }
+    },
+
+    seattletimes_importer: {
+        target: {
+            src: ['server/seattletimes/seattletimes_importer.js']
+        }
+    },
+
+    yelp_builder: {
+        target: {
+            src: ['server/yelp/yelp.js']
+        }
+    },
+
+    seattlerw_builder: {
+        target: {
+            src: ['server/seattlerw_consolidator.js']
+        }
     }
   });
 
@@ -396,6 +420,19 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('seattlerw', [
+    'seattletimes_parser',
+    'yelp',
+    'seattlerw_builder'
+  ]);
+
+  grunt.registerTask('seattlerw_all', [
+    'seattletimes_importer',
+    'seattletimes_parser',
+    'yelp',
+    'seattlerw_builder'
   ]);
 
   grunt.registerTask('default', [
